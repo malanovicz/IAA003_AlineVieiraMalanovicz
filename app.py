@@ -27,7 +27,8 @@ def load_data():
     )
     # Preparando as populações
     movies_df = df[df['type'] == 'Movie'].copy()
-    movies_df['duration_mins'] = movies_df['duration'].str.replace(' min', '', silent=True).str.replace(' min', '').astype(float)
+    # CORREÇÃO: Removido o argumento 'silent=True' inválido
+    movies_df['duration_mins'] = movies_df['duration'].astype(str).str.replace(' min', '').astype(float)
     
     series_df = df[df['type'] == 'TV Show'].copy()
     series_df['release_year'] = series_df['release_year'].astype(int)
